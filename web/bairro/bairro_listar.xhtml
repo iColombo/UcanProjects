@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+        <ui:composition template="./../template/masterPage.xhtml">            
+            <ui:define name="menuHorizontal">
+                <ui:include src="../pessoa/pessoa_menu_horizontal.xhtml"/>
+            </ui:define>
+            <ui:define name="menuLateral">
+                <ui:include src="../pessoa/pessoa_menu_lateral.xhtml"/>
+            </ui:define>
+
+            <ui:define name="center">
+                <h2>Bairros > Listagens</h2>
+                <h:form id="BairroListForm">
+
+                    <div class="ui-fluid">
+
+                        <p:growl showDetail="true">
+                            <p:autoUpdate />
+                        </p:growl>
+
+                        <p:messages showSummary="true" closable="true" showDetail="true">
+                            <p:autoUpdate />
+                        </p:messages>                 
+
+                        <br />
+
+                        <p:fieldset legend="Lista de Bairros">
+
+                            <p:commandButton
+                                icon="ui-icon-plus"  
+                                onclick="PF('BairroCreateDialog').show();"
+                                style="margin-top: 5px; margin-bottom: 10px"
+                                update=":BairroCreateForm"
+                                />                            
+
+                            <p:dataTable 
+                                id="tabela_listar_bairro" 
+                                sortMode="multiple" 
+                                var="item" 
+                                rows="8" 
+                                paginator="true" 
+                                paginatorPosition="bottom" 
+                                value="#{bairroManagedBean.listaDeBairros}"   
+                                reflow="true" 
+                                emptyMessage="Nenhum registo encontrado." 
+                                selection="#{bairroManagedBean.bairro}"
+                                selectionMode="single" 
+                                rowKey="#{item.pkBairro}"
+                                >
+                                <p:column 
+                                    headerText="Nome" 
+                                    sortBy="#{item.nome}" 
+                                    filterBy="#{item.nome}" 
+                                    filterMatchMode="contains"
+                                    >
+                                    <center>
+                                        <h:outputText 
+                                            value="#{item.nome}"
+                                            />
+                                    </center>
+                                </p:column>
+                                <p:column 
+                                    headerText="País" 
+                                    sortBy="#{item.fkMunicipio.fkProvincia.fkPais.nome}" 
+                                    filterBy="#{item.fkMunicipio.fkProvincia.fkPais.nome}" 
+                                    filterMatchMode="contains"
+                                    >
+                                    <center>
+                                        <h:outputText 
+                                            value="#{item.fkMunicipio.fkProvincia.fkPais.nome}"
+                                            />
+                                    </center>  
+                                </p:column>
+                                <p:column 
+                                    headerText="Província" 
+                                    sortBy="#{item.fkMunicipio.fkProvincia.nome}" 
+                                    filterBy="#{item.fkMunicipio.fkProvincia.nome}" 
+                                    filterMatchMode="contains"
+                                    >
+                                    <center>
+                                        <h:outputText 
+                                            value="#{item.fkMunicipio.fkProvincia.nome}"
+                                            />
+                                    </center>
+                                </p:column>
+                                <p:column 
+                                    headerText="Município" 
+                                    sortBy="#{item.fkMunicipio.nome}" 
+                                    filterBy="#{item.fkMunicipio.nome}" 
+                                    filterMatchMode="contains"
+                                    >
+                                    <center>
+                                        <h:outputText 
+                                            value="#{item.fkMunicipio.nome}"
+                                            />
+                                    </center>
+                                </p:column> 
+                                <p:column 
+                                    headerText="-------"
+                                    >
+                                    <center>
+                                        <p:commandButton
+                                            icon="ui-icon-info"
+                                            onclick="PF('BairroViewDialog').show();"
+                                            style="margin-right: 5px; width: 20px; height: 20px"
+                                            update=":BairroViewForm"
+                                            />
+                                        <p:commandButton 
+                                            icon="ui-icon-pencil"
+                                            onclick="PF('BairroEditDialog').show();"
+                                            style="margin-right: 5px; width: 20px; height: 20px"
+                                            update=":BairroEditForm"
+                                            />
+                                        <p:commandButton 
+                                            icon="ui-icon-trash"
+                                            onclick="PF('confirm_dialog').show()"
+                                            style="width: 20px; height: 20px"
+                                            />                    
+                                    </center>                                    
+                                </p:column>                                
+                            </p:dataTable>
+
+                            <center>
+                                <p:confirmDialog 
+                                    header="Eliminar o Bairro"
+                                    message="Tem certeza que pretende eliminar o item seleccionado?"
+                                    responsive="true" 
+                                    severity="alert" 
+                                    widgetVar="confirm_dialog"
+                                    >
+                                    <p:commandButton
+                                        actionListener="#{bairroEliminarManagedBean.eliminarRegisto()}"
+                                        value="Sim" 
+                                        process="@this" 
+                                        update="tabela_listar_bairro" 
+                                        oncomplete="PF('confirm_dialog').hide()"
+                                        />
+                                    <p:commandButton 
+                                        value="Não" 
+                                        onclick="PF('confirm_dialog').hide();" 
+                                        type="button"
+                                        />
+                                </p:confirmDialog>
+                            </center>
+                        </p:fieldset>
+
+                    </div>
+
+                </h:form>
+                <ui:include src="bairro_criar.xhtml"/>
+                <ui:include src="bairro_detalhe.xhtml"/>
+                <ui:include src="bairro_editar.xhtml"/>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+

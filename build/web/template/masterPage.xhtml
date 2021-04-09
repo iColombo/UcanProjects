@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+    <h:head>
+        <title>Projecto Modelo</title>
+        <h:outputStylesheet name="css/grid.css"/>
+        <h:outputStylesheet name="css/layout.css"/>
+        <h:outputStylesheet name="css/nav.css"/>
+        <h:outputStylesheet name="css/reset.css"/>
+        <h:outputStylesheet name="css/text.css"/>
+        <h:outputScript name="JS/locale.js"/>
+    </h:head>
+
+    <h:body>
+        <div class="container_12">
+            <ui:include src="cabecalho.xhtml" />
+            <div class="clear"></div>
+
+            <div class="grid_12">
+                <ul class="nav main">
+                    <ui:insert name="menuHorizontal">
+                        
+                        <h:form id="formArr">
+                            <li class="ic-home">
+                                <h:link outcome="/home.xhtml">
+                                    <span>Página Inicial</span>
+                                </h:link>
+                            </li>
+                        </h:form>
+                    </ui:insert>
+                </ul>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_2">
+                <div class="box sidemenu">
+                    <div class="block" id="section-menu">
+                        <p:layout>
+                            <p:layoutUnit position="center" />
+                        </p:layout>
+                        <ui:insert name="menuLateral">
+                            <ui:include src="menuLateral.xhtml"/>
+                        </ui:insert>
+                    </div>
+                </div>                    
+            </div>
+            <div class="grid_10">
+                <div class="box round first">
+                    <ui:insert name="center">
+                        <div class="block">
+                            Insira o conteúdo aqui
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+
+            <div class="clear"/>
+        </div>
+
+        <div class="clear"/>
+
+        <ui:include src="./rodape.xhtml"/>
+
+    </h:body>
+</html>

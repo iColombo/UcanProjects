@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition>
+
+        <div class="ui-fluid">
+            <p:dialog id="BairroViewDlg" widgetVar="BairroViewDialog" modal="true" resizable="false" header="Detalhes do Bairro">
+                <h:form id="BairroViewForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" >
+                            <h:outputText value="PK"/>
+                            <h:outputText value="#{bairroManagedBean.bairro.pkBairro}"/>
+                            <h:outputText value="Nome"/>
+                            <h:outputText value="#{bairroManagedBean.bairro.nome}"/>
+                            <h:outputText value="Bairro"/>
+                            <h:outputText value="#{bairroManagedBean.bairro.fkMunicipio.nome}"/>
+                        </p:panelGrid>
+                        <center>
+                            <p:commandButton value="Sair" onclick="BairroViewDialog.hide()" style="margin-top: 5px"/>
+                        </center>
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </div>
+
+    </ui:composition>
+</html>
+

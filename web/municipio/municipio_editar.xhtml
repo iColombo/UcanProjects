@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+
+        <div class="ui-fluid">
+            <p:dialog id="MunicipioEditDlg" widgetVar="MunicipioEditDialog" modal="true" resizable="false" header="Editar a Município">
+                <h:form id="MunicipioEditForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" >
+                            <h:outputText value="Nome"/>
+                            <p:inputText id="nome" value="#{municipioManagedBean.municipio.nome}" />
+                            <h:outputText value="Província"/>
+                            <p:selectOneMenu 
+                                filter="true" 
+                                filterMatchMode="contains" 
+                                id="provincia"
+                                value="#{municipioManagedBean.idProvinciaEditar}" 
+                                >
+                                <f:selectItems 
+                                    value="#{provinciaManagedBean.listaDeProvincias}"
+                                    var="provincia_var"
+                                    itemLabel="#{provincia_var.nome}"
+                                    itemValue="#{provincia_var.pkProvincia}"
+                                    >
+                                </f:selectItems>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        
+                        <br />
+                        
+                        <center>
+                            <p:commandButton actionListener="#{municipioEditarManagedBean.editarRegisto()}" value="Editar" update="display,:MunicipioListForm:tabela_listar_municipio"/>
+                            <p:commandButton value="Cancelar" onclick="MunicipioEditDialog.hide()" style="margin-top: 5px"/>
+                        </center>
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </div>
+
+    </ui:composition>
+</html>
+

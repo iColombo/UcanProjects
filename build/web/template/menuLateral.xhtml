@@ -1,0 +1,22 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form style="background-color: rgba(230,230,230,0.05); height: 620px">
+
+        <p:panelMenu style="width: 100%">
+            <p:submenu label="Menu">
+                
+                <p:menuitem
+                    action="/pessoa/pessoa_home.xhtml?faces-redirect=true"
+                    value="Pessoas" 
+                    icon="fa fa-fw fa-cog" 
+                    />
+                
+            </p:submenu>   
+        </p:panelMenu>
+
+    </h:form>
+
+</ui:composition>

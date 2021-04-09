@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 6/Jan/2017, 17:52:49
+    Author     : Ornela F. Boaventura
+*/
+
+.bt_new_user
+{
+   background-image: url("../Imagens/icons2/New-user-icon.png");
+}
+
+.bt_edit_user
+{
+   background-image: url("../Imagens/icons2/Edit-user-icon.png");
+}
+
+.bt_new_file
+{
+   background-image: url("../Imagens/icons2/New-file-icon.png");   
+}
+
+.bt_edit_file
+{
+   background-image: url("../Imagens/icons2/Edit-user-icon.png");
+}
+
+.bt_find
+{
+   background-image: url("../Imagens/icons2/Find-icon.png");
+}
+

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Home</title>
+    </h:head>
+    <h:body>
+        <center>Hello from Jakarta EE 8/Java EE 8</center>
+        <br />
+        <br />
+        <p:fieldset legend="It is a Model Project">
+            <h:form>
+
+                <div class="ui-fluid">
+                    <div id="top" class="top">
+                        <p:menubar>
+
+                            <p:submenu  label="Tabelas Gerais">
+                                <p:menuitem 
+                                    action="/index?faces-redirect=true"
+                                    value="Home"
+                                    />  
+                                <p:menuitem
+                                    action="/estadocivil/estado_civil_listar?faces-redirect=true"
+                                    value="Estados Civis" 
+                                    />
+                                <p:menuitem
+                                    action="/sexo/sexo_listar?faces-redirect=true"
+                                    value="Sexo" 
+                                    />                                 
+                                <p:menuitem 
+                                    action="/pais/pais_listar?faces-redirect=true"
+                                    value="Países"
+                                    />
+                                <p:menuitem
+                                    action="/provincia/provincia_listar?faces-redirect=true"
+                                    value="Províncias" 
+                                    />
+                                <p:menuitem
+                                    action="/municipio/municipio_listar?faces-redirect=true"
+                                    value="Muncípios" 
+                                    />
+                                <p:menuitem
+                                    action="/bairro/bairro_listar?faces-redirect=true"
+                                    value="bairros" 
+                                    />                                
+                                <p:menuitem
+                                    action="/profissao/profissao_listar?faces-redirect=true"
+                                    value="Profissẽs" 
+                                    />                                
+                                <p:menuitem
+                                    action="/pessoa/pessoa_listar?faces-redirect=true"
+                                    value="Pessoa" 
+                                    />
+                            </p:submenu>
+
+                        </p:menubar>
+
+                    </div>
+
+                    <div id="content" class="center_content">
+                        <ui:insert name="content">Content</ui:insert>
+                    </div>
+                </div>
+
+            </h:form>
+            
+        </p:fieldset>
+    </h:body>
+</html>
+

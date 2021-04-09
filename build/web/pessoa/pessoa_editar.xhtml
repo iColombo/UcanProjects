@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+
+        <div class="ui-fluid">
+            <p:dialog id="PessoaEditDlg" widgetVar="PessoaEditDialog" modal="true" resizable="false" header="Editar dados da Pessoa" >
+                <h:form id="PessoaEditForm">
+                    <p:tabView id="ptv_pessoa" style="height: auto">
+                        <p:tab title="Dados Pessoais" id="pt">
+                            <p:panelGrid style="padding: 1% 1%" styleClass="ui-panelgrid-blank form-group" id="pg">
+                                <h:panelGroup id="display">
+                                    <p:panelGrid columns="4" >
+                                        <h:outputText value="Número de Contriubuinte"/>
+                                        <p:inputText id="numero_contribuinte" value="#{pessoaManagedBean.pessoa.numeroContribuinte}" />                                        
+                                        <h:outputText value="Nome"/>
+                                        <p:inputText id="nome" value="#{pessoaManagedBean.pessoa.nomeCompleto}" />
+                                        <h:outputText value="Selecione a Data de Nascimento"/>
+                                        <p:calendar 
+                                            id="dataNascimento" 
+                                            showOn="button" 
+                                            locale="pt" 
+                                            yearRange="c-70:c+10" 
+                                            maxdate="now" 
+                                            pattern="dd/MM/yyyy" 
+                                            navigator="true" 
+                                            value="#{pessoaManagedBean.pessoa.dataNascimento}"
+                                            timeInput="true"
+                                            />
+                                        <h:outputText value="Sexo"/>
+                                        <p:selectOneMenu 
+                                            filter="true" 
+                                            filterMatchMode="contains" 
+                                            id="sexo"
+                                            value="#{sexoManagedBean.sexo.pkSexo}" 
+                                            >
+                                            <f:selectItems 
+                                                value="#{sexoManagedBean.lista}"
+                                                var="sexo_var"
+                                                itemLabel="#{sexo_var.descricao}"
+                                                itemValue="#{sexo_var.pkSexo}"
+                                                >
+                                            </f:selectItems>
+                                        </p:selectOneMenu>
+                                        <h:outputText value="Pai"/>  
+                                        <p:inputText id="nome_pai" value="#{pessoaManagedBean.pessoa.nomePai}"/>
+                                        <h:outputText value="Mãe"/>                                         
+                                        <p:inputText id="nome_mae" value="#{pessoaManagedBean.pessoa.nomeMae}"/>                                                                                   
+                                        <h:outputText value="Estado Civil"/>
+                                        <p:selectOneMenu 
+                                            filter="true" 
+                                            filterMatchMode="contains" 
+                                            id="estado_civil"
+                                            value="#{estadoCivilManagedBean.estadoCivil.pkEstadoCivil}" 
+                                            >
+                                            <f:selectItems 
+                                                value="#{estadoCivilManagedBean.listaDeEstadosCivis}"
+                                                var="estado_civil_var"
+                                                itemLabel="#{estado_civil_var.descricao}"
+                                                itemValue="#{estado_civil_var.pkEstadoCivil}"
+                                                >
+                                            </f:selectItems>
+                                        </p:selectOneMenu>                                        
+                                    </p:panelGrid>
+
+                                    <br />
+
+                                </h:panelGroup>
+                            </p:panelGrid>
+                        </p:tab>
+
+                        <p:tab title="Endereço">
+                            <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                                <h:outputText value="País"/>                        
+                                <p:selectOneMenu 
+                                    filter="true" 
+                                    filterMatchMode="contains" 
+                                    id="pais"
+                                    value="#{paisManagedBean.pais.pkPais}" 
+                                    >
+                                    <f:selectItems 
+                                        value="#{paisManagedBean.listaDePaises}"
+                                        var="p_var"
+                                        itemLabel="#{p_var.nome}"
+                                        itemValue="#{p_var.pkPais}"
+                                        >
+                                    </f:selectItems>
+                                    <p:ajax update="provincia"/>                            
+                                </p:selectOneMenu>
+
+                                <h:outputText value="Província"/>
+                                <p:selectOneMenu 
+                                    filter="true" 
+                                    filterMatchMode="contains" 
+                                    id="provincia"
+                                    value="#{provinciaManagedBean.provincia.pkProvincia}" 
+                                    >
+                                    <f:selectItems 
+                                        value="#{provinciaManagedBean.findAllOrderByNome(paisManagedBean.pais.pkPais)}"
+                                        var="prov_var"
+                                        itemLabel="#{prov_var.nome}"
+                                        itemValue="#{prov_var.pkProvincia}"
+                                        >
+                                    </f:selectItems>
+                                    <p:ajax update="municipio"/> 
+                                </p:selectOneMenu>
+
+                                <h:outputText value="Município"/>                        
+                                <p:selectOneMenu 
+                                    filter="true" 
+                                    filterMatchMode="contains" 
+                                    id="municipio"
+                                    value="#{municipioManagedBean.municipio.pkMunicipio}" 
+                                    >
+                                    <f:selectItems 
+                                        value="#{municipioManagedBean.findAllOrderByNome(provinciaManagedBean.provincia.pkProvincia)}"
+                                        var="m_var"
+                                        itemLabel="#{m_var.nome}"
+                                        itemValue="#{m_var.pkMunicipio}"
+                                        >
+                                    </f:selectItems>
+                                    <p:ajax update="bairro"/>                            
+                                </p:selectOneMenu>                                
+                                
+                                <h:outputText value="Bairro"/>                        
+                                <p:selectOneMenu 
+                                    filter="true" 
+                                    filterMatchMode="contains" 
+                                    id="bairro"
+                                    value="#{bairroManagedBean.bairro.pkBairro}" 
+                                    >
+                                    <f:selectItems 
+                                        value="#{bairroManagedBean.findAllOrderByNome(municipioManagedBean.municipio.pkMunicipio)}"
+                                        var="b_var"
+                                        itemLabel="#{b_var.nome}"
+                                        itemValue="#{b_var.pkBairro}"
+                                        >
+                                    </f:selectItems>
+                                </p:selectOneMenu>                                  
+                                
+                                <h:outputText value="Rua"/>                                         
+                                <p:inputText id="rua" value="#{pessoaManagedBean.pessoa.rua}" />
+
+                                <h:outputText value="Número da Casa"/>
+                                <p:inputText id="numero_casa" value="#{pessoaManagedBean.pessoa.numCasa}" />
+                            </p:panelGrid>
+                        </p:tab>                        
+
+                        <p:tab title="Anexos" >
+                            <p:fileUpload
+                                allowTypes="/(\.|\/)(jpe?g|png|pdf)$/"
+                                auto="true" 
+                                label="Carregar"
+                                listener="#{pessoaCriarManagedBean.upload}"
+                                uploadLabel="Enviar" 
+                                cancelLabel="Cancelar"
+                                mode="advanced" 
+                                multiple="true"
+                                dragDropSupport="true"
+                                sizeLimit="30000000"
+                                />
+                        </p:tab>
+
+                    </p:tabView>
+
+                    <br />
+                    
+                    <center>
+                        <p:commandButton 
+                            actionListener="#{pessoaEditarManagedBean.editarRegisto()}" 
+                            value="Editar"
+                            update="@form"
+                            />
+                        <p:commandButton value="Cancelar" onclick="PessoaEditDialog.hide()" style="margin-top: 5px"/>
+                    </center>
+                    
+                </h:form>
+            </p:dialog>
+        </div>
+
+
+    </ui:composition>
+</html>
+

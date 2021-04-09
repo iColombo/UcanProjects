@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Projecto Modelo</title>
+    </h:head>
+    <h:body>
+        <li class="ic-home">
+            <h:link outcome="/home.xhtml">
+                <span>Página Inicial</span>
+            </h:link>
+        </li>
+        <li class="ic-notifications">
+            <li class="ic-grid-tables"><a href="javascript:"><span>Tabelas</span></a>            
+                <ul>
+                    <li><h:link style="width: 175px" value="Estado Civil" outcome="/estadocivil/estado_civil_listar"/></li>
+                    <li><h:link style="width: 175px" value="Sexo" outcome="/sexo/sexo_listar"/></li>
+                    <li><h:link style="width: 175px" value="Profissão" outcome="/profissao/profissao_listar"/></li>
+                    <li><h:link style="width: 175px" value="País" outcome="/pais/pais_listar"/></li>
+                    <li><h:link style="width: 175px" value="Província" outcome="/provincia/provincia_listar"/></li>
+                    <li><h:link style="width: 175px" value="Município" outcome="/municipio/municipio_listar"/></li>
+                    <li><h:link style="width: 175px" value="Bairro" outcome="/bairro/bairro_listar"/></li>
+                </ul>
+            </li>
+        </li>
+    </h:body>
+</html>
+

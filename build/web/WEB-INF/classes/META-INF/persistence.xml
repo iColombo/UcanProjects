@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="AppPU" transaction-type="JTA">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <jta-data-source>java:/jdbc/exemplodb</jta-data-source>
+    <class>ejb.entidade.Provincia</class>
+    <class>ejb.entidade.Pais</class>
+    <class>ejb.entidade.Telefone</class>
+    <class>ejb.entidade.Pessoa</class>
+    <class>ejb.entidade.Profissao</class>
+    <class>ejb.entidade.Sexo</class>
+    <class>ejb.entidade.FicheiroAnexado</class>
+    <class>ejb.entidade.CorreioElectronico</class>
+    <class>ejb.entidade.TipoContacto</class>
+    <class>ejb.entidade.Bairro</class>
+    <class>ejb.entidade.Municipio</class>
+    <class>ejb.entidade.EstadoCivil</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/exemplodb"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="postgres"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+    </properties>
+  </persistence-unit>
+</persistence>

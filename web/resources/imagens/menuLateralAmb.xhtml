@@ -1,0 +1,20 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <!-- Definindo a cor da barra lateral-->
+    <h:form style="background-color: rgba(230,230,230,0.05); height: 750px">
+        <p:dialog  widgetVar="w_dlgLoading" header="Actualizando as Tabelas do CID-10" modal="true" resizable="false">
+            <img src="imagens/resources/loading.gif" width="128" height="128" alt="loading"/>
+        </p:dialog>
+        <p:panelMenu style="width: 100%">
+            <p:submenu label="CID10">
+                <p:menuitem value="Actualizar Tabelas" action="#{ambBean.actualizarCid10Tabelas()}" onstart="PF('w_dlgLoading').show()" oncomplete="PF('w_dlgLoading').hide()"/>
+                <p:menuitem value="Gerir Perfis" action="/ambVisao/ambCid/perfilGerirAmb.xhtml?faces-redirect=true" actionListener="#{ambCidPerfilGerirBean.init()}"/>
+                <p:menuitem value="Configurar Perfis" action="/ambVisao/ambCid/configuracoesAmb.xhtml?faces-redirect=true" actionListener="#{ambCidConfiguracoesBean.init()}"/>
+                <p:menuitem value="Hipótese de Diagnóstico" action="/ambVisao/ambCid/hipoteseDiagnosticoAmb.xhtml?faces-redirect=true" actionListener="#{ambCidHipoteseDiagnosticoBean.init()}"/>
+            </p:submenu>
+        </p:panelMenu>
+    </h:form>
+</ui:composition>

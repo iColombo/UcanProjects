@@ -1,0 +1,21 @@
+/* 
+    Document   : cssImagem
+    Created on : 27/Abr/2016, 14:20:02
+    Author     : indirapinto
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*root { 
+    display: block;
+}*/
+
+#imagemFundo{
+    
+    width: 50%;
+}
+
+#boxPage{
+    width: 100%;
+    height: 50%;
+}

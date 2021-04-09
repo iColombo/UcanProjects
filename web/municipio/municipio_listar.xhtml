@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+        <ui:composition template="./../template/masterPage.xhtml">
+            <ui:define name="menuHorizontal">
+                <ui:include src="../pessoa/pessoa_menu_horizontal.xhtml"/>
+            </ui:define>
+            <ui:define name="menuLateral">
+                <ui:include src="../pessoa/pessoa_menu_lateral.xhtml"/>
+            </ui:define>
+
+            <ui:define name="center">
+                <h2>Municípios > Listagens</h2>
+                <h:form id="MunicipioListForm">
+
+                    <div class="ui-fluid">
+
+                        <p:growl showDetail="true">
+                            <p:autoUpdate />
+                        </p:growl>
+
+                        <p:messages showSummary="true" closable="true" showDetail="true">
+                            <p:autoUpdate />
+                        </p:messages>                 
+
+                        <br />
+
+                        <p:fieldset legend="Lista de Municípios">
+
+                            <p:commandButton
+                                icon="ui-icon-plus"  
+                                onclick="PF('MunicipioCreateDialog').show();"
+                                style="margin-top: 5px; margin-bottom: 10px"
+                                update=":MunicipioCreateForm"
+                                />                            
+
+                            <p:dataTable 
+                                id="tabela_listar_municipio" 
+                                sortMode="multiple" 
+                                var="item" 
+                                rows="8" 
+                                paginator="true" 
+                                paginatorPosition="bottom" 
+                                value="#{municipioManagedBean.listaDeMunicipios}"   
+                                reflow="true" 
+                                emptyMessage="Nenhum registo encontrado." 
+                                selection="#{municipioManagedBean.municipio}"
+                                selectionMode="single" 
+                                rowKey="#{item.pkMunicipio}"
+                                >
+                                <p:column 
+                                    headerText="Nome" 
+                                    sortBy="#{item.nome}" 
+                                    filterBy="#{item.nome}" 
+                                    filterMatchMode="contains"
+                                    >
+                                    <center>
+                                        <h:outputText 
+                                            value="#{item.nome}"
+                                            />
+                                    </center>
+                                </p:column>
+                                <p:column 
+                                    headerText="País" 
+                                    sortBy="#{item.fkProvincia.fkPais.nome}" 
+                                    filterBy="#{item.fkProvincia.fkPais.nome}" 
+                                    filterMatchMode="contains"
+                                    >
+                                    <center>
+                                        <h:outputText 
+                                            value="#{item.fkProvincia.fkPais.nome}"
+                                            />
+                                    </center>  
+                                </p:column>
+                                <p:column 
+                                    headerText="Província" 
+                                    sortBy="#{item.fkProvincia.nome}" 
+                                    filterBy="#{item.fkProvincia.nome}" 
+                                    filterMatchMode="contains"
+                                    >
+                                    <center>
+                                        <h:outputText 
+                                            value="#{item.fkProvincia.nome}"
+                                            />
+                                    </center>
+                                </p:column>
+                                <p:column 
+                                    headerText="-------"
+                                    >
+                                    <center>                                    
+                                        <p:commandButton
+                                            icon="ui-icon-info"
+                                            onclick="PF('MunicipioViewDialog').show();"
+                                            style="margin-right: 5px; width: 20px; height: 20px"
+                                            update=":MunicipioViewForm"
+                                            />
+                                        <p:commandButton 
+                                            icon="ui-icon-pencil"
+                                            onclick="PF('MunicipioEditDialog').show();"
+                                            style="margin-right: 5px; width: 20px; height: 20px"
+                                            update=":MunicipioEditForm"
+                                            />
+                                        <p:commandButton 
+                                            icon="ui-icon-trash"
+                                            onclick="PF('confirm_dialog').show()"
+                                            style="width: 20px; height: 20px"
+                                            />                    
+                                    </center>
+                                </p:column>                                
+                            </p:dataTable>
+
+                            <center>
+                                <p:confirmDialog 
+                                    header="Eliminar o Município"
+                                    message="Tem certeza que pretende eliminar o item seleccionado?"
+                                    responsive="true" 
+                                    severity="alert" 
+                                    widgetVar="confirm_dialog"
+                                    >
+                                    <p:commandButton
+                                        actionListener="#{municipioEliminarManagedBean.eliminarRegisto()}"
+                                        value="Sim" 
+                                        process="@this" 
+                                        update="tabela_listar_municipio" 
+                                        oncomplete="PF('confirm_dialog').hide()"
+                                        />
+                                    <p:commandButton 
+                                        value="Não" 
+                                        onclick="PF('confirm_dialog').hide();" 
+                                        type="button"
+                                        />
+                                </p:confirmDialog>
+                            </center>
+                        </p:fieldset>
+
+                    </div>
+
+                </h:form>
+                <ui:include src="municipio_criar.xhtml"/>
+                <ui:include src="municipio_detalhe.xhtml"/>
+                <ui:include src="municipio_editar.xhtml"/>                
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+
