@@ -2,7 +2,8 @@
 
 Projecto criado no intuito de ser modelo a ser usado para aplicação de alguns conceitos e especificações (Java EE 7 e Jakarta EE 8/9 por exemplo) Java que sejam relevantes 
 
-Pessoal estou começando cá e este é o meu primeiro repositório git. 
+Pessoal estou começando cá e este é o meu primeiro repositório git.
+
     -> Após baixar o Projecto, ele virá com o seguinte nome "UcanProjects" no .zip e após descompactar  
       renomeiem para App, façam o backup da base de dados (banco de dados) "exemplodb" e sejam felizes pronto para usar . . .       
       -> Detalhes técnicos (stack de desenvolvimento):
@@ -10,5 +11,6 @@ Pessoal estou começando cá e este é o meu primeiro repositório git.
           -> PostgreSQL 9.5 (ou superior);
           -> Apache NetBeans 12.0 LTS;
           -> pgAdmin 3 (ou superior).
+          
 Obs.: Frisar que é um Projecto Java Ant . . .
 
