@@ -12,5 +12,8 @@ Pessoal estou começando cá e este é o meu primeiro repositório git.
           -> Apache NetBeans 12.0 LTS;
           -> pgAdmin 3 (ou superior).
           
+NOTA: Este Projecto foi feito para acompanhar o Tutorial do link abaixo
+https://www.academia.edu/49074923/Tutorial_instalacao_configuracao_apachenetbeans_javaee_wildfly_ubuntu_centos_windows
+
 Obs.: Frisar que é um Projecto Java Ant . . .
 
